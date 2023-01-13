@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "http://thetato.com/r3f/static/css/main.466c4cb0.css",
+    "main.js": "http://thetato.com/r3f/static/js/main.c3e3fd0d.js",
+    "index.html": "http://thetato.com/r3f/index.html",
+    "main.466c4cb0.css.map": "http://thetato.com/r3f/static/css/main.466c4cb0.css.map",
+    "main.c3e3fd0d.js.map": "http://thetato.com/r3f/static/js/main.c3e3fd0d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.466c4cb0.css",
+    "static/js/main.c3e3fd0d.js"
+  ]
+}
