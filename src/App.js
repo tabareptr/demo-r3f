@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { VRButton, ARButton, XR, Controllers, Hands } from '@react-three/xr'
 import { Canvas } from '@react-three/fiber'
 import { useFrame } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
@@ -27,6 +28,23 @@ const PJL = ({ rotate, onBlockDestroyed, canDestroy }) => {
 }
 
 export default function App() {
+  return (
+    <>
+      <VRButton />
+      <Canvas>
+        <XR>
+          <Controllers />
+          <Hands />
+          <mesh>
+            <boxGeometry />
+            <meshBasicMaterial color="blue" />
+          </mesh>
+        </XR>
+      </Canvas>
+    </>
+  )
+}
+export function _App() {
   const [rotate, setRotate] = useState(true)
   const [destroyed, setDestroyed] = useState(new Set())
 
@@ -43,27 +61,33 @@ export default function App() {
   return (
     <>
       <div style={{ color: '#c9c9c9', width: '100%', textAlign: 'center', margin: 15, fontSize: '50px' }}>{message}</div>
-      <Canvas camera={{ fov: 75, near: 0.5, far: 1000, position: [5, 0, 20] }}>
-        <ambientLight intensity={0.5} />
-        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-        <pointLight position={[-10, -10, -10]} />
+      <VRButton />
+      {/* <Canvas camera={{ fov: 75, near: 0.5, far: 1000, position: [5, 0, 20] }}> */}
+      <Canvas>
+        {/* <ambientLight intensity={0.5} /> */}
+        {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}
+        {/* <pointLight position={[-10, -10, -10]} /> */}
 
-        <PJL
-          rotate={rotate}
-          destroyable={rotate}
-          canDestroy={!rotate}
-          onBlockDestroyed={(id) => {
-            setDestroyed((state) => {
-              const newState = new Set([...state])
-              newState.add(id)
-              return newState
-            })
-          }}
-        />
+        <XR>
+          <Controllers />
 
-        {rotate && <Seeker onClick={() => setRotate(false)} />}
+          {/* <PJL
+            rotate={rotate}
+            destroyable={rotate}
+            canDestroy={!rotate}
+            onBlockDestroyed={(id) => {
+              setDestroyed((state) => {
+                const newState = new Set([...state])
+                newState.add(id)
+                return newState
+              })
+            }}
+          />
 
-        <OrbitControls />
+          {rotate && <Seeker onClick={() => setRotate(false)} />} */}
+        </XR>
+
+        {/* <OrbitControls /> */}
       </Canvas>
     </>
   )
