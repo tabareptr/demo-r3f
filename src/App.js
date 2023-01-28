@@ -27,7 +27,7 @@ const PJL = ({ rotate, onBlockDestroyed, canDestroy }) => {
   )
 }
 
-export default function App() {
+export function __App() {
   return (
     <>
       <VRButton />
@@ -44,7 +44,7 @@ export default function App() {
     </>
   )
 }
-export function _App() {
+export default function App() {
   const [rotate, setRotate] = useState(true)
   const [destroyed, setDestroyed] = useState(new Set())
 
@@ -62,18 +62,17 @@ export function _App() {
     <>
       <div style={{ color: '#c9c9c9', width: '100%', textAlign: 'center', margin: 15, fontSize: '50px' }}>{message}</div>
       <VRButton />
-      {/* <Canvas camera={{ fov: 75, near: 0.5, far: 1000, position: [5, 0, 20] }}> */}
-      <Canvas>
-        {/* <ambientLight intensity={0.5} /> */}
-        {/* <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} /> */}
-        {/* <pointLight position={[-10, -10, -10]} /> */}
+      <Canvas camera={{ fov: 75, near: 0.5, far: 1000, position: [5, 0, 20] }}>
+        <ambientLight intensity={0.5} />
+        <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+        <pointLight position={[-10, -10, -10]} />
 
         <XR>
           <Controllers />
 
-          {/* <PJL
+          <PJL
             rotate={rotate}
-            destroyable={rotate}
+            destroyable
             canDestroy={!rotate}
             onBlockDestroyed={(id) => {
               setDestroyed((state) => {
@@ -84,7 +83,7 @@ export function _App() {
             }}
           />
 
-          {rotate && <Seeker onClick={() => setRotate(false)} />} */}
+          {/* {rotate && <Seeker onClick={() => setRotate(false)} />} */}
         </XR>
 
         {/* <OrbitControls /> */}
